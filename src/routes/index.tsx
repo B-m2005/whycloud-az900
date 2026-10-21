@@ -135,7 +135,6 @@ function Index() {
             ) : (
               <div className="flex items-center gap-2">
                 <button onClick={() => login("google")} className="btn-primary"><LogIn className="h-4 w-4" /><span className="hidden sm:inline">Sign in with Google</span></button>
-                <button onClick={() => login("lovable")} className="btn-ghost"><span className="hidden sm:inline">Lovable</span><span className="sm:hidden">L</span></button>
               </div>
             )}
           </div>
