@@ -2,10 +2,11 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 import type { User } from "@supabase/supabase-js";
 import {
-  Cloud, GitBranch as Github, LogOut, CheckCircle2, XCircle, ChevronDown, Lightbulb, Globe2,
+  Cloud, LogIn, LogOut, CheckCircle2, XCircle, ChevronDown, Lightbulb, Globe2,
   ArrowRight, RotateCcw, BarChart3, AlertTriangle,
 } from "lucide-react";
 import { supabase, type UserAttempt } from "@/lib/supabase";
+import { lovable } from "@/integrations/lovable/index";
 import { QUESTIONS, DOMAINS, type Domain } from "@/lib/questions";
 import { domainStats, readinessScore, type AttemptLite } from "@/lib/readiness";
 
@@ -109,7 +110,10 @@ function Index() {
     else localStorage.removeItem(LOCAL_KEY);
   }
 
-  const login = () => supabase.auth.signInWithOAuth({ provider: "github", options: { redirectTo: window.location.origin } });
+  const login = async (provider: "google" | "lovable") => {
+    const result = await lovable.auth.signInWithOAuth(provider, { redirect_uri: window.location.origin });
+    if (result.error) setDbError(result.error.message ?? "Sign-in failed");
+  };
 
   return (
     <div className="min-h-screen bg-background bg-grid flex flex-col">
@@ -129,7 +133,10 @@ function Index() {
                 <button onClick={() => supabase.auth.signOut()} className="btn-ghost" aria-label="Sign out"><LogOut className="h-4 w-4" /><span className="hidden sm:inline">Sign out</span></button>
               </div>
             ) : (
-              <button onClick={login} className="btn-primary"><Github className="h-4 w-4" /><span className="hidden sm:inline">Login with GitHub</span></button>
+              <div className="flex items-center gap-2">
+                <button onClick={() => login("google")} className="btn-primary"><LogIn className="h-4 w-4" /><span className="hidden sm:inline">Sign in with Google</span></button>
+                <button onClick={() => login("lovable")} className="btn-ghost"><span className="hidden sm:inline">Lovable</span><span className="sm:hidden">L</span></button>
+              </div>
             )}
           </div>
         </div>
@@ -214,7 +221,7 @@ function Index() {
             ))}
           </div>
           <p className="mt-5 text-xs text-muted-foreground">
-            {user ? "Attempts are saved to your account." : "Log in with GitHub to save attempts to your account. Progress is stored on this device for now."}
+            {user ? "Attempts are saved to your account." : "Sign in to save attempts to your account. Progress is stored on this device for now."}
           </p>
           {dbError && <p className="mt-2 flex gap-1.5 text-xs text-destructive"><AlertTriangle className="h-3.5 w-3.5 shrink-0" />Couldn't sync: {dbError}</p>}
         </aside>
