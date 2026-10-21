@@ -55,7 +55,8 @@ WhyCloud explains the *why* behind every answer. After each question the learner
 - **Instant feedback:** Immediate correct/incorrect response on every question.
 - **Detailed explanations:** Clear context on why the right answer is right and why the others are wrong.
 - **African analogies:** A relatable everyday scenario tied to every question.
-- **Progress dashboard:** Tracks attempts, accuracy, and domain coverage (stored locally via browser storage and Supabase).
+- **Progress dashboard:** Tracks attempts, accuracy, and domain coverage. Progress is stored on your device, and syncs to your account when you sign in.
+-  **Google sign-in:** Sign in with Google to save your progress to your account.
 - **Dark mode interface:** Designed for clean, focused study sessions.
 
 ---
