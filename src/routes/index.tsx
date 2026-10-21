@@ -72,7 +72,7 @@ function Index() {
   }, [user]);
 
   const pool = useMemo(() => (domain === "All" ? QUESTIONS : QUESTIONS.filter((q) => q.domain === domain)), [domain]);
-  const q = pool[idx % pool.length];
+  const q = pool[idx % pool.length]!;
   const stats = domainStats(attempts);
   const readiness = readinessScore(attempts);
   const totalCorrect = attempts.filter((a) => a.is_correct).length;
