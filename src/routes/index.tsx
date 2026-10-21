@@ -221,7 +221,7 @@ function Index() {
             ))}
           </div>
           <p className="mt-5 text-xs text-muted-foreground">
-            {user ? "Attempts are saved to your account." : "Log in with GitHub to save attempts to your account. Progress is stored on this device for now."}
+            {user ? "Attempts are saved to your account." : "Sign in to save attempts to your account. Progress is stored on this device for now."}
           </p>
           {dbError && <p className="mt-2 flex gap-1.5 text-xs text-destructive"><AlertTriangle className="h-3.5 w-3.5 shrink-0" />Couldn't sync: {dbError}</p>}
         </aside>
