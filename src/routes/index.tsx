@@ -62,7 +62,15 @@ function Index() {
 
   useEffect(() => {
     if (!user) {
-      try { setAttempts(JSON.parse(localStorage.getItem(LOCAL_KEY) ?? "[]")); } catch { setAttempts([]); }
+      try {
+        let saved = localStorage.getItem(LOCAL_KEY);
+        if (saved === null && localStorage.getItem(LEGACY_LOCAL_KEY) !== null) {
+          saved = localStorage.getItem(LEGACY_LOCAL_KEY);
+          localStorage.setItem(LOCAL_KEY, saved!);
+          localStorage.removeItem(LEGACY_LOCAL_KEY);
+        }
+        setAttempts(JSON.parse(saved ?? "[]"));
+      } catch { setAttempts([]); }
       return;
     }
     supabase.from("user_attempts").select("question_id,domain,is_correct").eq("user_id", user.id)
