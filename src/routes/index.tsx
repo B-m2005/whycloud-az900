@@ -116,7 +116,7 @@ function Index() {
             <Gauge value={readiness} />
             {user ? (
               <div className="flex items-center gap-2">
-                {user.user_metadata?.['avatar_url'] && <img src={user.user_metadata.avatar_url} alt="" className="h-8 w-8 rounded-full border border-border" />}
+                {user.user_metadata?.['avatar_url'] && <img src={user.user_metadata['avatar_url']} alt="" className="h-8 w-8 rounded-full border border-border" />}
                 <button onClick={() => supabase.auth.signOut()} className="btn-ghost" aria-label="Sign out"><LogOut className="h-4 w-4" /><span className="hidden sm:inline">Sign out</span></button>
               </div>
             ) : (
