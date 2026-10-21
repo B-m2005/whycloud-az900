@@ -169,12 +169,7 @@ function Index() {
                   </button>
                   {showExp && (
                     <div className="space-y-3 border-t border-border px-4 py-4 text-sm">
-                      <p><span className="font-semibold text-success">Why it's right: </span>{q.explanation}</p>
-                      <ul className="space-y-1.5">
-                        {q.options.map((o, i) => i !== q.answer && (
-                          <li key={i} className="text-muted-foreground"><span className="font-semibold text-destructive">{String.fromCharCode(65 + i)}. {o}: </span>{q.whyWrong[i]}</li>
-                        ))}
-                      </ul>
+                      <p className="leading-relaxed">{q.explanation}</p>
                     </div>
                   )}
                 </div>

@@ -1,0 +1,142 @@
+[
+  {
+    "id": 1,
+    "domain": "Cloud Concepts",
+    "question": "A startup wants to avoid buying servers up front and prefers to pay only for the compute and storage it actually uses each month. Which cloud pricing model does this describe?",
+    "options": [
+      "Consumption-based model (operational expenditure)",
+      "Capital expenditure (CapEx) model",
+      "Perpetual on-premises licensing",
+      "Fixed-term hardware lease"
+    ],
+    "correct_answer": "Consumption-based model (operational expenditure)",
+    "explanation": "The consumption-based model means you pay only for the resources you use, with no large up-front investment. This shifts spending from CapEx to OpEx. The CapEx model is wrong because it involves large up-front purchases of physical infrastructure, which is exactly what the startup wants to avoid. Perpetual licensing is wrong because you pay once for software you then own, regardless of how much you use it. A fixed-term hardware lease is wrong because you pay a fixed amount for a set period whether or not you use the capacity, so costs do not follow usage.",
+    "african_analogy": "It is like buying prepaid electricity tokens or M-Pesa airtime: you pay for exactly what you consume, when you need it. The alternative is buying an expensive diesel generator up front (CapEx) and paying for fuel and maintenance whether or not you use it."
+  },
+  {
+    "id": 2,
+    "domain": "Cloud Concepts",
+    "question": "A company runs a Windows virtual machine in Azure (IaaS). Who is responsible for installing operating system security updates on the guest OS?",
+    "options": [
+      "Microsoft",
+      "The customer",
+      "The internet service provider",
+      "Microsoft and the customer share it equally"
+    ],
+    "correct_answer": "The customer",
+    "explanation": "Under the shared responsibility model, with IaaS the customer manages the guest operating system, including patching, as well as applications and data. Microsoft manages the physical datacenter, hardware and host infrastructure. 'Microsoft' is wrong because Microsoft would patch the OS only in PaaS or SaaS offerings. 'The internet service provider' is wrong because an ISP only provides connectivity and has no role in managing your VM. 'Shared equally' is wrong because responsibility is divided by layer, not split 50/50, and the split shifts toward Microsoft as you move from IaaS to PaaS to SaaS.",
+    "african_analogy": "Think of renting a stall in a municipal market. The market authority maintains the building, roof, water and security at the gate (the provider's part). You are responsible for locking your own stall, arranging your goods and looking after your stock (the customer's part)."
+  },
+  {
+    "id": 3,
+    "domain": "Cloud Concepts",
+    "question": "An online retailer sees traffic surge during festive seasons and drop afterwards. It wants its application's resources to increase and decrease automatically with demand. Which cloud benefit is this?",
+    "options": [
+      "Elasticity",
+      "Fault tolerance",
+      "Data sovereignty",
+      "Disaster recovery"
+    ],
+    "correct_answer": "Elasticity",
+    "explanation": "Elasticity is the ability to automatically add or remove resources as demand changes, so you pay for what you need at any moment. Fault tolerance is wrong because it is about continuing to operate when a component fails, not about matching demand. Data sovereignty is wrong because it concerns the legal requirement for data to stay under the laws of the country where it is stored. Disaster recovery is wrong because it is about restoring services after a major outage, not about scaling with demand.",
+    "african_analogy": "A market trader hires extra helpers on a busy Saturday or before Christmas, then sends them home when business is quiet. Capacity grows and shrinks with the crowd, and you only pay for the help you actually needed."
+  },
+  {
+    "id": 4,
+    "domain": "Azure Architecture and Services",
+    "question": "You must keep an application running within the same Azure region even if one datacenter in that region fails. Which approach should you use?",
+    "options": [
+      "Deploy the resources across Availability Zones",
+      "Place all virtual machines in a single datacenter and use Premium SSD disks",
+      "Put all the resources in the same resource group",
+      "Enable Azure Advisor recommendations"
+    ],
+    "correct_answer": "Deploy the resources across Availability Zones",
+    "explanation": "Availability Zones are physically separate locations within an Azure region, each with independent power, cooling and networking. Spreading resources across zones keeps the app running if one datacenter fails. Using a single datacenter is wrong because faster disks do not protect against the loss of that datacenter. A resource group is wrong because it is only a logical container for management and has no effect on physical placement or resilience. Azure Advisor is wrong because it gives best-practice recommendations but does not itself make a workload resilient.",
+    "african_analogy": "A village solar microgrid keeps batteries and inverters in several separate buildings. If one shed floods or loses power, the other sites keep the lights on, and everyone is still served by the same local grid."
+  },
+  {
+    "id": 5,
+    "domain": "Azure Architecture and Services",
+    "question": "A developer wants a small piece of code to run automatically whenever a new payment notification arrives. The developer does not want to manage servers and wants to pay only when the code runs. Which Azure service fits best?",
+    "options": [
+      "Azure Functions",
+      "Azure Virtual Machines",
+      "Azure Dedicated Host",
+      "Azure Virtual Desktop"
+    ],
+    "correct_answer": "Azure Functions",
+    "explanation": "Azure Functions is a serverless, event-driven compute service. Code runs in response to triggers, the platform manages the infrastructure, and billing is based on execution (on the Consumption plan). Azure Virtual Machines is wrong because you would have to manage the OS and servers and pay while the VM runs, even when idle. Azure Dedicated Host is wrong because it provides physical servers dedicated to your organization, which is the opposite of serverless. Azure Virtual Desktop is wrong because it delivers virtualized desktops and apps to users and is not used to run event-triggered code.",
+    "african_analogy": "When an M-Pesa confirmation SMS arrives, a small program instantly sends the customer a receipt. It is like hiring a casual worker who is paid only per job done, not a full-time employee sitting idle between payments."
+  },
+  {
+    "id": 6,
+    "domain": "Azure Architecture and Services",
+    "question": "Which option shows the correct Azure resource organization hierarchy, from the highest level to the lowest?",
+    "options": [
+      "Management group > Subscription > Resource group > Resource",
+      "Subscription > Management group > Resource group > Resource",
+      "Resource group > Subscription > Management group > Resource",
+      "Management group > Resource group > Subscription > Resource"
+    ],
+    "correct_answer": "Management group > Subscription > Resource group > Resource",
+    "explanation": "Management groups sit at the top and organize multiple subscriptions. Each subscription contains resource groups, and each resource group contains individual resources such as VMs and storage accounts. The second option is wrong because a subscription cannot sit above a management group. The third is wrong because resource groups are contained within subscriptions, not the other way around. The fourth is wrong because it places resource groups above subscriptions, but a resource group always belongs to exactly one subscription.",
+    "african_analogy": "Picture a national SACCO federation (management group) that oversees many regional SACCOs (subscriptions). Each SACCO has member groups (resource groups), and each group holds individual members' savings accounts (resources). Rules and oversight flow from the top downward."
+  },
+  {
+    "id": 7,
+    "domain": "Azure Architecture and Services",
+    "question": "A bank needs a private, dedicated connection between its on-premises network and Azure that does NOT travel over the public internet. Which service should it use?",
+    "options": [
+      "Azure ExpressRoute",
+      "Azure VPN Gateway",
+      "Azure DNS",
+      "Azure Content Delivery Network (CDN)"
+    ],
+    "correct_answer": "Azure ExpressRoute",
+    "explanation": "ExpressRoute creates a private connection to Azure through a connectivity provider, bypassing the public internet for better reliability, speed and consistent latency. Azure VPN Gateway is wrong because it encrypts traffic but sends it over the public internet. Azure DNS is wrong because it hosts domain name records and does not provide network connectivity. Azure CDN is wrong because it caches content at edge locations close to users to speed up delivery and does not link on-premises networks to Azure.",
+    "african_analogy": "A shared matatu route is like the public internet: affordable, but crowded and unpredictable. ExpressRoute is like leasing a private, dedicated bus line between your office and the depot, so it is not affected by traffic on the shared route."
+  },
+  {
+    "id": 8,
+    "domain": "Azure Management and Governance",
+    "question": "A company wants to ensure that nobody in its subscription can create resources outside two approved Azure regions. Which Azure feature should it use?",
+    "options": [
+      "Azure Policy",
+      "Azure Monitor",
+      "Microsoft Defender for Cloud",
+      "Azure Service Health"
+    ],
+    "correct_answer": "Azure Policy",
+    "explanation": "Azure Policy lets you create, assign and manage rules (such as allowed locations) that enforce organizational standards and assess compliance at scale. Azure Monitor is wrong because it collects and analyzes telemetry and does not restrict where resources are created. Microsoft Defender for Cloud is wrong because it focuses on security posture management and threat protection, not enforcing region restrictions. Azure Service Health is wrong because it reports on Azure service outages and planned maintenance affecting your resources.",
+    "african_analogy": "A county market authority decides that only licensed produce from approved suppliers may be sold in the market. The rule applies to everyone, and trades that break it are flagged or blocked."
+  },
+  {
+    "id": 9,
+    "domain": "Azure Management and Governance",
+    "question": "An administrator wants to prevent a production database from being accidentally deleted, even by users who have the Owner role. What should the administrator apply?",
+    "options": [
+      "A resource lock (Delete lock)",
+      "A tag with the value 'production'",
+      "Azure Advisor recommendations",
+      "Azure Service Health alerts"
+    ],
+    "correct_answer": "A resource lock (Delete lock)",
+    "explanation": "A resource lock set to Delete (CanNotDelete) blocks deletion of the resource until the lock is removed, and it applies regardless of the user's role. Tags are wrong because they are metadata labels for organizing and billing and do not stop deletion. Azure Advisor is wrong because it only offers recommendations on cost, security, reliability and performance, and it enforces nothing. Azure Service Health alerts are wrong because they notify you about Azure platform issues and cannot prevent actions on your resources.",
+    "african_analogy": "A community borehole pump has a padlock on its control box. Even a well-meaning village elder cannot accidentally switch it off or remove it without first deliberately unlocking it, which protects the water supply everyone depends on."
+  },
+  {
+    "id": 10,
+    "domain": "Azure Management and Governance",
+    "question": "A manufacturing company wants to build a business case for moving to Azure by comparing the cost of running its existing on-premises datacenter with the cost of running equivalent workloads in Azure. Which tool should it use?",
+    "options": [
+      "Total Cost of Ownership (TCO) calculator",
+      "Azure Advisor",
+      "Azure Service Health",
+      "Azure Resource Manager (ARM) templates"
+    ],
+    "correct_answer": "Total Cost of Ownership (TCO) calculator",
+    "explanation": "The TCO calculator estimates the savings of moving on-premises workloads to Azure by comparing current infrastructure costs, including hardware, electricity, facilities and IT labor, with Azure costs. Azure Advisor is wrong because it gives optimization recommendations for resources you have already deployed. Azure Service Health is wrong because it tracks service incidents and maintenance, not costs. ARM templates are wrong because they deploy resources through infrastructure as code and do not estimate or compare costs. Note that the Pricing calculator, a different tool, estimates the cost of Azure services you plan to use but does not compare against on-premises costs.",
+    "african_analogy": "A farmer weighing a diesel irrigation pump against a solar pump does not look only at the purchase price. They add up fuel, repairs, transport to buy fuel and downtime over several years, then compare the total. The TCO calculator does the same for IT."
+  }
+]
