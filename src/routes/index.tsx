@@ -12,9 +12,9 @@ import { domainStats, readinessScore, type AttemptLite } from "@/lib/readiness";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "CloudVibe AZ-900 Prep — Smart Azure Fundamentals Quiz" },
+      { title: "WhyCloud AZ-900 Prep — Smart Azure Fundamentals Quiz" },
       { name: "description", content: "Practice AZ-900 with instant feedback, detailed explanations and African real-world analogies. Track your exam readiness." },
-      { property: "og:title", content: "CloudVibe AZ-900 Prep" },
+      { property: "og:title", content: "WhyCloud AZ-900 Prep" },
       { property: "og:description", content: "Smart AZ-900 quizzes with African real-world analogies and a readiness dashboard." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -23,7 +23,8 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const LOCAL_KEY = "cloudvibe-attempts";
+const LOCAL_KEY = "whycloud-attempts";
+const LEGACY_LOCAL_KEY = "cloudvibe-attempts";
 
 function Gauge({ value }: { value: number }) {
   const r = 18, c = 2 * Math.PI * r;
@@ -61,7 +62,15 @@ function Index() {
 
   useEffect(() => {
     if (!user) {
-      try { setAttempts(JSON.parse(localStorage.getItem(LOCAL_KEY) ?? "[]")); } catch { setAttempts([]); }
+      try {
+        let saved = localStorage.getItem(LOCAL_KEY);
+        if (saved === null && localStorage.getItem(LEGACY_LOCAL_KEY) !== null) {
+          saved = localStorage.getItem(LEGACY_LOCAL_KEY);
+          localStorage.setItem(LOCAL_KEY, saved!);
+          localStorage.removeItem(LEGACY_LOCAL_KEY);
+        }
+        setAttempts(JSON.parse(saved ?? "[]"));
+      } catch { setAttempts([]); }
       return;
     }
     supabase.from("user_attempts").select("question_id,domain,is_correct").eq("user_id", user.id)
@@ -110,7 +119,7 @@ function Index() {
             <div className="grid h-9 w-9 place-items-center rounded-lg bg-gradient-brand shadow-glow">
               <Cloud className="h-5 w-5 text-primary-foreground" />
             </div>
-            <span className="font-display text-lg font-bold tracking-tight">CloudVibe <span className="text-primary">AZ-900</span></span>
+            <span className="font-display text-lg font-bold tracking-tight">WhyCloud <span className="text-primary">AZ-900</span></span>
           </div>
           <div className="flex items-center gap-3 sm:gap-5">
             <Gauge value={readiness} />
