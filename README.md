@@ -1,4 +1,4 @@
-# WhyCloud AZ-900 Prep ☁️
+# WhyCloud AZ-900  ☁️
 
 ⚠️ **Unofficial study tool.** Not affiliated with, endorsed by, or sponsored by Microsoft.  
 All questions are original and based on the public AZ-900 skills outline on [Microsoft Learn](https://learn.microsoft.com/en-us/certifications/exams/az-900). No real exam questions are used. No Microsoft logos are used.
@@ -177,7 +177,7 @@ Then open the local URL shown in your terminal (usually `http://localhost:5173`)
 
 ## 📄 Disclaimer
 
-WhyCloud AZ-900 Prep is an **unofficial** educational project created for the #1MillionDevs Vibe Coding Hackathon. It is not affiliated with Microsoft. *Microsoft* and *Azure* are trademarks of the Microsoft group of companies. Practice questions are original and are not taken from the real exam. Passing these practice questions does not guarantee passing the certification exam. Always refer to [Microsoft Learn](https://learn.microsoft.com/en-us/credentials/certifications/azure-fundamentals/) for official study material.
+WhyCloud AZ-900 is an **unofficial** educational project created for the #1MillionDevs Vibe Coding Hackathon. It is not affiliated with Microsoft. *Microsoft* and *Azure* are trademarks of the Microsoft group of companies. Practice questions are original and are not taken from the real exam. Passing these practice questions does not guarantee passing the certification exam. Always refer to [Microsoft Learn](https://learn.microsoft.com/en-us/credentials/certifications/azure-fundamentals/) for official study material.
 
 ---
 
