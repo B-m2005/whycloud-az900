@@ -138,5 +138,75 @@
     "correct_answer": "Total Cost of Ownership (TCO) calculator",
     "explanation": "The TCO calculator estimates the savings of moving on-premises workloads to Azure by comparing current infrastructure costs, including hardware, electricity, facilities and IT labor, with Azure costs. Azure Advisor is wrong because it gives optimization recommendations for resources you have already deployed. Azure Service Health is wrong because it tracks service incidents and maintenance, not costs. ARM templates are wrong because they deploy resources through infrastructure as code and do not estimate or compare costs. Note that the Pricing calculator, a different tool, estimates the cost of Azure services you plan to use but does not compare against on-premises costs.",
     "african_analogy": "A farmer weighing a diesel irrigation pump against a solar pump does not look only at the purchase price. They add up fuel, repairs, transport to buy fuel and downtime over several years, then compare the total. The TCO calculator does the same for IT."
+  },
+  {
+    "id": 11,
+    "domain": "Cloud Concepts",
+    "question": "An online shop expects more visitors during a sale and wants to handle them by adding more identical server instances instead of making one server bigger. What is this called?",
+    "options": [
+      "Geo-redundancy",
+      "Resource locking",
+      "Scaling up (vertical scaling)",
+      "Scaling out (horizontal scaling)"
+    ],
+    "correct_answer": "Scaling out (horizontal scaling)",
+    "explanation": "Scaling out means adding more instances to share the load, which is exactly what the shop wants. Scaling up is wrong because it makes a single server bigger by adding CPU or memory. Geo-redundancy is wrong because it copies data to another location for protection, not to serve more users. Resource locking is wrong because it only prevents accidental changes or deletion.",
+    "african_analogy": "On a busy market day, you open more stalls with the same goods instead of squeezing everything into one bigger stall."
+  },
+  {
+    "id": 12,
+    "domain": "Cloud Concepts",
+    "question": "A hospital must keep patient records in its own on-premises datacenter, but wants to run its public website in Azure. Which cloud model does this describe?",
+    "options": [
+      "Hybrid cloud",
+      "Multi-region deployment",
+      "Private cloud only",
+      "Public cloud only"
+    ],
+    "correct_answer": "Hybrid cloud",
+    "explanation": "A hybrid cloud combines on-premises or private infrastructure with a public cloud such as Azure, so sensitive data can stay in-house while other workloads run in the cloud. Public cloud only is wrong because part of the system stays on-premises. Private cloud only is wrong because the website runs in Azure, which is a public cloud. Multi-region deployment is wrong because it means using several Azure regions, not mixing on-premises and cloud.",
+    "african_analogy": "A shopkeeper keeps cash and valuables in a safe at home, but sells goods from a rented stall in the market. Some things stay private, others use shared space."
+  },
+  {
+    "id": 13,
+    "domain": "Cloud Concepts",
+    "question": "Which of these is an example of Software as a Service (SaaS)?",
+    "options": [
+      "Microsoft 365 email (Exchange Online)",
+      "Azure Virtual Machines",
+      "Azure App Service",
+      "Azure SQL Database"
+    ],
+    "correct_answer": "Microsoft 365 email (Exchange Online)",
+    "explanation": "SaaS delivers a ready-to-use application over the internet and the provider manages everything behind it, so a hosted email service fits. Azure Virtual Machines is IaaS because you manage the operating system. Azure App Service is PaaS because you deploy your own code on a managed platform. Azure SQL Database is PaaS because it is a managed database you build on, not a finished application for end users.",
+    "african_analogy": "Using M-Pesa on your phone: you just open the app and use it. You don't build, run or maintain the system behind it."
+  },
+  {
+    "id": 14,
+    "domain": "Cloud Concepts",
+    "question": "A company copies its data and services to a second Azure region so it can restore operations after a major outage in its main region. Which concept does this describe?",
+    "options": [
+      "Shared responsibility",
+      "Consumption-based pricing",
+      "Disaster recovery",
+      "Scalability"
+    ],
+    "correct_answer": "Disaster recovery",
+    "explanation": "Disaster recovery is the plan and setup that lets you restore services after a serious failure, such as the loss of a whole region. Scalability is wrong because it is about handling changing demand. Consumption-based pricing is wrong because it is a billing model. Shared responsibility is wrong because it describes who manages which layer between Microsoft and the customer.",
+    "african_analogy": "A trader keeps a spare copy of customer debts in a notebook at home. If the shop's ledger is lost, business can carry on."
+  },
+  {
+    "id": 15,
+    "domain": "Azure Architecture and Services",
+    "question": "What is an Azure region pair?",
+    "options": [
+      "Two subscriptions with the same owner",
+      "Two Availability Zones in one region",
+      "Two datacenters inside one region",
+      "Two regions in the same geography that are linked to support disaster recovery and coordinated updates"
+    ],
+    "correct_answer": "Two regions in the same geography that are linked to support disaster recovery and coordinated updates",
+    "explanation": "Each Azure region is paired with another region in the same geography, which supports disaster recovery and lets Microsoft roll out updates to one region at a time. Two datacenters inside one region is wrong because a region pair involves two separate regions. Two subscriptions is wrong because subscriptions are billing and management boundaries, not physical locations. Two Availability Zones is wrong because zones are separate locations within a single region.",
+    "african_analogy": "Two towns in the same county agree to back each other up. If a flood hits one, the other can keep shared services running."
   }
 ]
