@@ -208,5 +208,75 @@
     "correct_answer": "Two regions in the same geography that are linked to support disaster recovery and coordinated updates",
     "explanation": "Each Azure region is paired with another region in the same geography, which supports disaster recovery and lets Microsoft roll out updates to one region at a time. Two datacenters inside one region is wrong because a region pair involves two separate regions. Two subscriptions is wrong because subscriptions are billing and management boundaries, not physical locations. Two Availability Zones is wrong because zones are separate locations within a single region.",
     "african_analogy": "Two towns in the same county agree to back each other up. If a flood hits one, the other can keep shared services running."
+  },
+  {
+    "id": 16,
+    "domain": "Azure Architecture and Services",
+    "question": "A school wants to store thousands of photos and videos as unstructured data in Azure. Which service is the best fit?",
+    "options": [
+      "Azure Table Storage",
+      "Azure Queue Storage",
+      "Azure Blob Storage",
+      "Azure Virtual Network"
+    ],
+    "correct_answer": "Azure Blob Storage",
+    "explanation": "Blob Storage is designed for large amounts of unstructured data such as images, videos and documents. Queue Storage is wrong because it holds messages passed between application components. Table Storage is wrong because it stores structured NoSQL key and attribute data. Azure Virtual Network is wrong because it is a networking service, not a place to store files.",
+    "african_analogy": "A big warehouse behind the market where you stack sacks of different shapes and sizes. Nobody cares what is inside, you just need lots of room."
+  },
+  {
+    "id": 17,
+    "domain": "Azure Architecture and Services",
+    "question": "Which Azure service lets your cloud resources communicate securely with each other, with the internet and with your on-premises network?",
+    "options": [
+      "Azure Cost Management",
+      "Azure Advisor",
+      "Azure Virtual Network",
+      "Azure Policy"
+    ],
+    "correct_answer": "Azure Virtual Network",
+    "explanation": "Azure Virtual Network is the basic networking building block that connects Azure resources to each other, to the internet and to on-premises networks. Azure Advisor is wrong because it gives recommendations. Azure Policy is wrong because it enforces rules on resources. Azure Cost Management is wrong because it tracks spending.",
+    "african_analogy": "The roads and paths inside a market that let shoppers, suppliers and delivery riders reach every stall safely."
+  },
+  {
+    "id": 18,
+    "domain": "Azure Architecture and Services",
+    "question": "A company wants employees to sign in once and get secure access to many cloud apps using a cloud-based identity service. Which Azure service provides this?",
+    "options": [
+      "Microsoft Entra ID",
+      "Azure Load Balancer",
+      "Azure Monitor",
+      "Azure Blob Storage"
+    ],
+    "correct_answer": "Microsoft Entra ID",
+    "explanation": "Microsoft Entra ID (formerly Azure Active Directory) is the cloud identity and access management service that handles sign-in, single sign-on and access to apps. Azure Monitor is wrong because it collects logs and metrics. Azure Blob Storage is wrong because it stores unstructured data. Azure Load Balancer is wrong because it distributes network traffic across servers.",
+    "african_analogy": "A single staff ID card that opens every door in the office building, instead of carrying a different key for each room."
+  },
+  {
+    "id": 19,
+    "domain": "Azure Architecture and Services",
+    "question": "A bank requires users to prove who they are with their password and also a one-time code sent to their phone. What is this called?",
+    "options": [
+      "Single sign-on (SSO)",
+      "Multifactor authentication (MFA)",
+      "Role-based access control (RBAC)",
+      "A resource lock"
+    ],
+    "correct_answer": "Multifactor authentication (MFA)",
+    "explanation": "MFA requires two or more proofs of identity, such as something you know (a password) and something you have (a phone). Single sign-on is wrong because it lets you sign in once to reach many apps. RBAC is wrong because it decides what an identity is allowed to do after it signs in. A resource lock is wrong because it protects resources from accidental changes.",
+    "african_analogy": "Withdrawing money at an agent: you need your ID and also the code sent to your phone before they release the cash."
+  },
+  {
+    "id": 20,
+    "domain": "Azure Architecture and Services",
+    "question": "A developer wants to run a small containerized application in Azure quickly, without managing any virtual machines. Which service fits best?",
+    "options": [
+      "Azure Dedicated Host",
+      "Azure Virtual Machine Scale Sets",
+      "Azure Container Instances",
+      "Azure Virtual Desktop"
+    ],
+    "correct_answer": "Azure Container Instances",
+    "explanation": "Azure Container Instances runs containers directly without you creating or managing virtual machines. Virtual Machine Scale Sets manage groups of VMs, so you still manage machines. Azure Virtual Desktop delivers desktops and apps to users and does not run your containers. Azure Dedicated Host provides physical servers dedicated to your organization, which is the opposite of hands-off.",
+    "african_analogy": "Selling from a ready-packed box you place on a table at the market. You don't have to build or rent a shop first."
   }
 ]
