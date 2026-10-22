@@ -278,5 +278,75 @@
     "correct_answer": "Azure Container Instances",
     "explanation": "Azure Container Instances runs containers directly without you creating or managing virtual machines. Virtual Machine Scale Sets manage groups of VMs, so you still manage machines. Azure Virtual Desktop delivers desktops and apps to users and does not run your containers. Azure Dedicated Host provides physical servers dedicated to your organization, which is the opposite of hands-off.",
     "african_analogy": "Selling from a ready-packed box you place on a table at the market. You don't have to build or rent a shop first."
+  },
+  {
+    "id": 21,
+    "domain": "Azure Management and Governance",
+    "question": "A junior technician should be able to restart virtual machines but not delete them or change anything else. Which Azure feature should you use to give only those permissions?",
+    "options": [
+      "Azure Advisor",
+      "Azure role-based access control (RBAC)",
+      "Azure Policy",
+      "A resource tag"
+    ],
+    "correct_answer": "Azure role-based access control (RBAC)",
+    "explanation": "RBAC assigns roles with specific permissions to users at a chosen scope, which supports the principle of least privilege. Azure Policy is wrong because it enforces rules on resources, not what a person can do. A tag is wrong because it is only a label. Azure Advisor is wrong because it gives recommendations and does not grant permissions.",
+    "african_analogy": "A shop owner lets the new helper serve customers and use the till, but only the owner can open the safe."
+  },
+  {
+    "id": 22,
+    "domain": "Azure Management and Governance",
+    "question": "A startup wants to estimate the monthly cost of the Azure services it plans to use before deploying anything. Which tool should it use?",
+    "options": [
+      "Microsoft Defender for Cloud",
+      "Total Cost of Ownership (TCO) calculator",
+      "Azure Pricing calculator",
+      "Azure Cost Management"
+    ],
+    "correct_answer": "Azure Pricing calculator",
+    "explanation": "The Pricing calculator estimates the cost of the Azure services you plan to use. The TCO calculator is wrong because it compares running workloads on-premises with running them in Azure. Azure Cost Management is wrong because it tracks and analyzes what you are actually spending. Microsoft Defender for Cloud is wrong because it focuses on security.",
+    "african_analogy": "Before opening a shop, you list rent, stock and transport on paper to estimate your monthly costs before spending any money."
+  },
+  {
+    "id": 23,
+    "domain": "Azure Management and Governance",
+    "question": "A company wants to label Azure resources by department so it can group them in cost reports. What should it use?",
+    "options": [
+      "Tags",
+      "Azure ExpressRoute",
+      "Resource locks",
+      "Availability Zones"
+    ],
+    "correct_answer": "Tags",
+    "explanation": "Tags are name and value labels you attach to resources so you can organize them, for example for billing by department. Resource locks are wrong because they prevent changes or deletion. Availability Zones are wrong because they are physical locations for resilience. ExpressRoute is wrong because it is a private network connection to Azure.",
+    "african_analogy": "Writing the owner's name on each sack in a shared store so you can tell whose goods are whose when it is time to settle accounts."
+  },
+  {
+    "id": 24,
+    "domain": "Azure Management and Governance",
+    "question": "An administrator wants to run Azure commands directly from a web browser without installing any tools on their computer. Which feature should they use?",
+    "options": [
+      "Azure Resource Manager templates",
+      "Azure Service Health",
+      "Azure Advisor",
+      "Azure Cloud Shell"
+    ],
+    "correct_answer": "Azure Cloud Shell",
+    "explanation": "Azure Cloud Shell is a browser-based shell with Azure CLI and PowerShell, so there is nothing to install. Azure Advisor is wrong because it only gives recommendations. Azure Service Health is wrong because it reports on Azure service incidents and maintenance. ARM templates are wrong because they deploy resources from a file rather than being an interactive command line.",
+    "african_analogy": "Using a shared computer at a cyber cafe: sit down, log in and work, without bringing or installing your own machine."
+  },
+  {
+    "id": 25,
+    "domain": "Azure Management and Governance",
+    "question": "A company wants to collect performance data and logs from its Azure resources and be alerted when something goes wrong. Which service should it use?",
+    "options": [
+      "Azure Resource Manager templates",
+      "Azure Cost Management",
+      "Azure Policy",
+      "Azure Monitor"
+    ],
+    "correct_answer": "Azure Monitor",
+    "explanation": "Azure Monitor collects, analyzes and acts on telemetry from your resources, including sending alerts. Azure Policy is wrong because it enforces rules and checks compliance. Azure Cost Management is wrong because it tracks spending. ARM templates are wrong because they deploy resources and do not watch them.",
+    "african_analogy": "A night watchman at the market who checks every stall during the night and rings a bell the moment something looks wrong."
   }
 ]
