@@ -14,6 +14,8 @@ Built for the **Vibe Coding Hackathon: AZ-900 Exam Prep Edition** by the **#1Mil
 * 📂 **GitHub repo:** [https://github.com/B-m2005/whycloud-az900](https://github.com/B-m2005/whycloud-az900)
 * 🧠 **Prompts used:** [PROMPTS.md](./PROMPTS.md)
 * 📘 **AZ-900 skills outline:** [Microsoft Learn](https://learn.microsoft.com/en-us/certifications/exams/az-900)
+* * 🎤 **Pitch deck:** [WhyCloud AZ-900 Pitch Deck](https://canva.link/d37vat8hhu8pzpr)
+* 🎥 **Video demo:** [Watch the demo](YOUR-VIDEO-LINK)
 
 ---
 
