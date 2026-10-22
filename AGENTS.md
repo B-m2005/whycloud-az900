@@ -8,3 +8,5 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Keep quiz shuffling and keyboard filtering in browser-safe quiz-controls helpers; shuffle only on question transitions and use answer text for correctness so displayed order cannot affect scoring.

@@ -24,6 +24,7 @@ export interface Question {
   prompt: string;
   options: string[];
   answer: number;
+  correctAnswer: string;
   explanation: string;
   analogy: string;
 }
@@ -34,6 +35,7 @@ export const QUESTIONS: Question[] = (raw as RawQuestion[]).map((q) => ({
   prompt: q.question,
   options: q.options,
   answer: q.options.indexOf(q.correct_answer),
+  correctAnswer: q.correct_answer,
   explanation: q.explanation,
   analogy: q.african_analogy,
 }));
