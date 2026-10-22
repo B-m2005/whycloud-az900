@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { User } from "@supabase/supabase-js";
 import {
   Cloud, LogIn, LogOut, CheckCircle2, XCircle, ChevronDown, Lightbulb, Globe2,
@@ -9,6 +9,7 @@ import { supabase, type UserAttempt } from "@/lib/supabase";
 import { lovable } from "@/integrations/lovable/index";
 import { QUESTIONS, DOMAINS, type Domain } from "@/lib/questions";
 import { domainStats, readinessScore, type AttemptLite } from "@/lib/readiness";
+import { answerShortcut, shuffleOptions } from "@/lib/quiz-controls";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -52,6 +53,9 @@ function Index() {
   const [picked, setPicked] = useState<number | null>(null);
   const [showExp, setShowExp] = useState(false);
   const [dbError, setDbError] = useState<string | null>(null);
+  const [displayedOptions, setDisplayedOptions] = useState<string[]>(() => [...(QUESTIONS[0]?.options ?? [])]);
+  const loadedQuestion = useRef<string | null>(null);
+  const answerLocked = useRef(false);
 
   useEffect(() => {
     supabase.auth.getUser().then(({ data }) => setUser(data.user));
@@ -67,7 +71,7 @@ function Index() {
         let saved = localStorage.getItem(LOCAL_KEY);
         if (saved === null && localStorage.getItem(LEGACY_LOCAL_KEY) !== null) {
           saved = localStorage.getItem(LEGACY_LOCAL_KEY);
-          localStorage.setItem(LOCAL_KEY, saved!);
+          if (saved !== null) localStorage.setItem(LOCAL_KEY, saved);
           localStorage.removeItem(LEGACY_LOCAL_KEY);
         }
         setAttempts(JSON.parse(saved ?? "[]"));
@@ -82,25 +86,49 @@ function Index() {
   }, [user]);
 
   const pool = useMemo(() => (domain === "All" ? QUESTIONS : QUESTIONS.filter((q) => q.domain === domain)), [domain]);
-  const q = pool[idx % pool.length]!;
+  const q = pool[idx % pool.length];
+  useEffect(() => {
+    const key = `${domain}:${idx}:${q?.id}`;
+    if (!q || loadedQuestion.current === key) return;
+    loadedQuestion.current = key;
+    answerLocked.current = false;
+    setDisplayedOptions(shuffleOptions(q.options));
+  }, [q, domain, idx]);
   const stats = domainStats(attempts);
   const readiness = readinessScore(attempts);
   const totalCorrect = attempts.filter((a) => a.is_correct).length;
 
-  async function choose(i: number) {
-    if (picked !== null) return;
+  const choose = useCallback(async (i: number) => {
+    const option = displayedOptions[i];
+    if (!q || option === undefined || picked !== null || answerLocked.current) return;
+    answerLocked.current = true;
     setPicked(i);
-    const a: AttemptLite = { question_id: q.id, domain: q.domain, is_correct: i === q.answer };
+    const a: AttemptLite = { question_id: q.id, domain: q.domain, is_correct: option === q.correctAnswer };
     const next = [...attempts, a];
     setAttempts(next);
     if (user) {
-      const row: UserAttempt = { user_id: user.id, question_id: q.id, domain: q.domain, selected_index: i, is_correct: a.is_correct };
+      const row: UserAttempt = { user_id: user.id, question_id: q.id, domain: q.domain, selected_index: q.options.indexOf(option), is_correct: a.is_correct };
       const { error } = await supabase.from("user_attempts").insert(row);
       setDbError(error ? error.message : null);
     } else {
       localStorage.setItem(LOCAL_KEY, JSON.stringify(next));
     }
-  }
+  }, [q, displayedOptions, picked, attempts, user]);
+
+  useEffect(() => {
+    function onKeyDown(event: KeyboardEvent) {
+      const target = event.target;
+      const editing = target instanceof HTMLElement && (
+        target.isContentEditable || Boolean(target.closest("input, textarea, select, [role='textbox']"))
+      );
+      const i = answerShortcut(event, picked !== null || answerLocked.current, editing);
+      if (i === null || event.repeat) return;
+      event.preventDefault();
+      void choose(i);
+    }
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [choose, picked]);
 
   function nextQ() { setPicked(null); setShowExp(false); setIdx((n) => n + 1); }
 
@@ -114,6 +142,10 @@ function Index() {
     const result = await lovable.auth.signInWithOAuth(provider, { redirect_uri: window.location.origin });
     if (result.error) setDbError(result.error.message ?? "Sign-in failed");
   };
+
+  if (!q) return null;
+  const pickedCorrect = picked !== null && displayedOptions[picked] === q.correctAnswer;
+  const correctDisplayedIndex = displayedOptions.findIndex((option) => option === q.correctAnswer);
 
   return (
     <div className="min-h-screen bg-background bg-grid flex flex-col">
@@ -158,14 +190,15 @@ function Index() {
             <h2 className="font-display text-xl font-semibold leading-snug sm:text-2xl">{q.prompt}</h2>
 
             <div className="mt-6 grid gap-3">
-              {q.options.map((opt, i) => {
-                const state = picked === null ? "" : i === q.answer ? "option-correct" : i === picked ? "option-wrong" : "opacity-50";
+              {displayedOptions.map((opt, i) => {
+                const correct = opt === q.correctAnswer;
+                const state = picked === null ? "" : correct ? "option-correct" : i === picked ? "option-wrong" : "opacity-50";
                 return (
                   <button key={i} onClick={() => choose(i)} disabled={picked !== null} className={`option ${state}`}>
                     <span className="grid h-7 w-7 shrink-0 place-items-center rounded-md border border-border text-sm font-semibold">{String.fromCharCode(65 + i)}</span>
                     <span className="flex-1 text-left">{opt}</span>
-                    {picked !== null && i === q.answer && <CheckCircle2 className="h-5 w-5 text-success" />}
-                    {picked === i && i !== q.answer && <XCircle className="h-5 w-5 text-destructive" />}
+                    {picked !== null && correct && <CheckCircle2 className="h-5 w-5 text-success" />}
+                    {picked === i && !correct && <XCircle className="h-5 w-5 text-destructive" />}
                   </button>
                 );
               })}
@@ -173,8 +206,8 @@ function Index() {
 
             {picked !== null && (
               <div className="mt-6 space-y-3 animate-in fade-in slide-in-from-bottom-2">
-                <p className={picked === q.answer ? "font-semibold text-success" : "font-semibold text-destructive"}>
-                  {picked === q.answer ? "Correct! Nicely done." : `Not quite — the answer is ${String.fromCharCode(65 + q.answer)}.`}
+                <p className={pickedCorrect ? "font-semibold text-success" : "font-semibold text-destructive"}>
+                  {pickedCorrect ? "Correct! Nicely done." : `Not quite — the answer is ${String.fromCharCode(65 + correctDisplayedIndex)}.`}
                 </p>
 
                 <div className="rounded-xl border border-border bg-muted/40">
